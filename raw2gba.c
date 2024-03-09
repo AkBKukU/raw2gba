@@ -40,6 +40,13 @@ int main(int argc, char** argv) {
     strcpy(base, argv[1]);
     base[strlen(argv[1]) - 4] = '\0';
 
+    /* replace '.'s with '_' */
+    char *current_pos = strchr(base,'.');
+    while (current_pos!=NULL) {
+        *current_pos = '_';
+        current_pos = strchr(current_pos,'.');
+    }
+
     /* open output file which is same name but with .h instead of .raw */
     char output_name[strlen(base) + 3];
     sprintf(output_name, "%s.h", base);
